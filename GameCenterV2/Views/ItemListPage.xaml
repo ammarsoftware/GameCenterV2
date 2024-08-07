@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GameCenterV2.Converters"
+             xmlns:vm="clr-namespace:GameCenterV2.ViewModels"
+             x:Class="GameCenterV2.Views.ItemListPage"
+             FlowDirection="RightToLeft"
+             Title="المواد">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="إضافة مادة" IconImageSource="dotnet_bot.png" Order="Primary" Priority="0" Command="{Binding NavigateToAdditemCommand}"/>
+    </ContentPage.ToolbarItems>
+
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <SearchBar Placeholder="بحث عن مادة" Grid.Row="0" Text="{Binding SearchQuery}"  SearchCommand="{Binding SearchCommand}"/>
+        <CollectionView x:Name="CollectionViewList" Grid.Row="1" SelectionMode="Single" 
+                    ItemsSource="{Binding CrossSellitems}"
+                    SelectionChanged="OnCollectionViewSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Spacing="10">
+                        <Frame Padding="10" CornerRadius="10" BackgroundColor="AliceBlue" InputTransparent="True">
+
+                            <VerticalStackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding IImg, Converter={StaticResource ByteArrayToImageSourceConverter}}" HeightRequest="60" WidthRequest="60" Aspect="AspectFill" Grid.Column="0" />
+
+                                    <StackLayout Grid.Column="1" Padding="10,0">
+                                        <Label Text="{Binding IName}" FontSize="Medium" FontAttributes="Bold"/>
+                                        <Label Text="{Binding IQty}" FontSize="Small" TextColor="Gray"/>
+                                        <Label Text="{Binding IPriceSale}" FontSize="Small" TextColor="Gray"/>
+                                    </StackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Frame>
+
+                        <!-- Separator -->
+                        <BoxView HeightRequest="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

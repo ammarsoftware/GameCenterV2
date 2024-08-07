@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.SettingsPage"
+             Title="الاعدادت">
+
+    <StackLayout Padding="20">
+        <Picker ItemsSource="{Binding AvailablePrinters}"
+             SelectedItem="{Binding SelectedPrinter}"
+             Title="اختر الطابعة" />
+        <Button Text="تحديث قائمة الطابعات"
+             Command="{Binding LoadPrintersCommand}" />
+    </StackLayout>
+</ContentPage>

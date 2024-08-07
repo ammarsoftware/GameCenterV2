@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="GameCenterV2.Views.MergeTablesPage"
+             Title="دمج وتحويل الطاولات">
+
+    <StackLayout Padding="10">
+        <CollectionView ItemsSource="{Binding Tables}" SelectionMode="Multiple">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="5"
+                             Orientation="Vertical"
+                             HorizontalItemSpacing="15"
+                             VerticalItemSpacing="15" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10"
+                       Padding="0"
+                       HasShadow="True"
+                       BackgroundColor="White"
+                       WidthRequest="150"
+                       HeightRequest="200"
+                       Margin="0">
+                        <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Frame CornerRadius="10"
+                               Padding="0"
+                               IsClippedToBounds="True"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               BackgroundColor="Transparent"
+                               WidthRequest="120"
+                               HeightRequest="120">
+                                <Image Source="{Binding TbImage, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="120"
+                                   WidthRequest="120" />
+                            </Frame>
+                            <StackLayout Orientation="Horizontal" Padding="0,0,20,0" Margin="20,0,0,0">
+                                
+                           
+                            <Label Text="{Binding TNumber}"
+                               HorizontalOptions="Center"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,10,0,0" />
+                            <CheckBox IsChecked="{Binding IsSelected}" Margin="20,0,0,0"
+                                  HorizontalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="LightBlue" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="دمج"
+            Command="{Binding ConfirmMergeCommand}"
+            TextColor="White"
+            FontSize="20"
+            CornerRadius="10"
+            HeightRequest="50"
+            HorizontalOptions="FillAndExpand"
+            Margin="10,20,10,0" />
+    </StackLayout>
+
+    <!--<StackLayout>
+        --><!-- قائمة الطاولات --><!--
+        <CollectionView ItemsSource="{Binding Tables}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="{Binding TableNumber}" />
+                        <CheckBox IsChecked="{Binding IsSelected}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="دمج" Command="{Binding ConfirmMergeCommand}" />
+    </StackLayout>-->
+</ContentPage>

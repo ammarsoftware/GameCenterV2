@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.MapPage"
+             xmlns:viewmodels="clr-namespace:GameCenterV2.ViewModels"
+             xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:local="clr-namespace:GameCenterV2.Converters"
+             
+             Title="الطاولات">
+    <ContentPage.Behaviors>
+        <behaviors:EventToCommandBehavior Command="{Binding InitCommand}" EventName="Appearing" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:BoolToColorConverter x:Key="BoolToColorConverter" />
+            <local:MergedToColorConverter x:Key="MergedToColorConverter" />
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+            <local:SelectedItemEventArgsConverter x:Key="SelectedItemConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <CollectionView ItemsSource="{Binding CrossTables}"
+                SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
+            <CollectionView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                EventName="SelectionChanged"
+                Command="{Binding TableTappedCommand}"
+                EventArgsConverter="{StaticResource SelectedItemConverter}"/>
+            </CollectionView.Behaviors>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="5"  
+                                 Orientation="Vertical"
+                                 HorizontalItemSpacing="10"
+                                 VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" WidthRequest="150" HeightRequest="200">
+                        <!--<Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MapViewModel}}, Path=TableTappedCommand}"
+                                  CommandParameter="{Binding .}"/>
+                        </Grid.GestureRecognizers>-->
+                        <Frame CornerRadius="10" 
+                               InputTransparent="True"
+                               Padding="5"
+                               BackgroundColor="Transparent"
+                               BorderColor="{Binding IsActive, Converter={StaticResource BoolToColorConverter}}">
+                            <StackLayout>
+                                <Frame CornerRadius="10" 
+                                       InputTransparent="True"
+                                           Padding="0"
+                                           IsClippedToBounds="True"
+                                           BorderColor="{Binding IsMarged, Converter={StaticResource MergedToColorConverter}}"
+                                           HeightRequest="150"
+                                           WidthRequest="120"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center">
+                                   <Grid>
+                                     <Image Source="{Binding TbImage, Converter={StaticResource ByteArrayToImageSourceConverter}}"
+                                                   Aspect="Fill"
+                                                   HeightRequest="120"
+                                                   WidthRequest="120" />        
+                                    </Grid>
+                                </Frame>
+                                <Label Text="{Binding TNumber}"
+                                       HorizontalOptions="Center"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       Margin="0,5,0,0" />
+                            </StackLayout>
+                        </Frame>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="LightBlue" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+
+</ContentPage>

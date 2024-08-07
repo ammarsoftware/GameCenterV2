@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.AddStorePage"
+             xmlns:local="clr-namespace:GameCenterV2.Converters"
+             Title="اضافة وتعديل الاقسام">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Entry Text="{Binding StoreName}" Placeholder="اسم القسم" Margin="10"/>
+                <Entry Text="{Binding StoreOrder}" Placeholder="الترتيب" Keyboard="Numeric" Margin="10"/>
+               
+                
+                <!-- Customer Image -->
+                <Button Text="تحميل صورة القسم" Command="{Binding PickStoreImageAsyncCommand}" Margin="10"/>
+                <Image Source="{Binding StoreImg, Converter={StaticResource ByteArrayToImageSourceConverter}}" HeightRequest="200" Margin="10"/>
+               
+                <Button Text="حفظ" Command="{Binding SaveAsyncCommand}" Margin="10"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

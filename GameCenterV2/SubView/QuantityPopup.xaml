@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+                  x:Class="GameCenterV2.SubView.QuantityPopup">
+    <Frame VerticalOptions="Center" HorizontalOptions="Center" 
+           WidthRequest="300" HeightRequest="400"
+           Padding="20" BackgroundColor="White" CornerRadius="20">
+        <StackLayout Spacing="15">
+            <Label Text="تعديل الكمية" FontSize="24" HorizontalOptions="Center"/>
+            <Entry x:Name="QuantityEntry" Keyboard="Numeric" Text="{Binding Quantity}" 
+                   HorizontalTextAlignment="Center" FontSize="24" Margin="0,10"/>
+            <Grid RowSpacing="10" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- الأزرار من 1 إلى 9 -->
+                <Button Text="1" Grid.Row="0" Grid.Column="0" Command="{Binding AddNumberCommand}" CommandParameter="1" FontSize="20"/>
+                <Button Text="2" Grid.Row="0" Grid.Column="1" Command="{Binding AddNumberCommand}" CommandParameter="2" FontSize="20"/>
+                <Button Text="3" Grid.Row="0" Grid.Column="2" Command="{Binding AddNumberCommand}" CommandParameter="3" FontSize="20"/>
+                <Button Text="4" Grid.Row="1" Grid.Column="0" Command="{Binding AddNumberCommand}" CommandParameter="4" FontSize="20"/>
+                <Button Text="5" Grid.Row="1" Grid.Column="1" Command="{Binding AddNumberCommand}" CommandParameter="5" FontSize="20"/>
+                <Button Text="6" Grid.Row="1" Grid.Column="2" Command="{Binding AddNumberCommand}" CommandParameter="6" FontSize="20"/>
+                <Button Text="7" Grid.Row="2" Grid.Column="0" Command="{Binding AddNumberCommand}" CommandParameter="7" FontSize="20"/>
+                <Button Text="8" Grid.Row="2" Grid.Column="1" Command="{Binding AddNumberCommand}" CommandParameter="8" FontSize="20"/>
+                <Button Text="9" Grid.Row="2" Grid.Column="2" Command="{Binding AddNumberCommand}" CommandParameter="9" FontSize="20"/>
+
+                <Button Text="0" Grid.Row="3" Grid.Column="0" Command="{Binding AddNumberCommand}" CommandParameter="0" FontSize="20"/>
+                <Button Text="حذف" Grid.Row="3" Grid.Column="1" Command="{Binding DeleteCommand}" FontSize="20"/>
+                <Button Text="موافق" Grid.Row="3" Grid.Column="2" Command="{Binding ConfirmCommand}" FontSize="20" BackgroundColor="#007AFF" TextColor="White"/>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</mopups:PopupPage>

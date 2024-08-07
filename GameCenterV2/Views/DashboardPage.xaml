@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="GameCenterV2.Views.DashboardPage"
+             Title="الرئيسية"
+             BackgroundColor="{AppThemeBinding Light=#f0f0f0, Dark=#2b2b2b}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- تعريف الألوان الرئيسية للتطبيق -->
+            <Color x:Key="PrimaryColor">#4CAF50</Color>
+            <Color x:Key="SecondaryColor">#2196F3</Color>
+            <Color x:Key="AccentColor">#FFC107</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="{OnPlatform iOS='20,40,20,20', Default='20'}" 
+          RowSpacing="10" 
+          ColumnSpacing="10" 
+          RowDefinitions="Auto,*,*"
+          ColumnDefinitions="*,*">
+
+        <Label Text="لوحة التحكم" 
+               FontSize="{OnIdiom Phone=24, Tablet=32, Desktop=36}"
+               FontAttributes="Bold" 
+               TextColor="{AppThemeBinding Light=#333333, Dark=#ffffff}"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               Grid.ColumnSpan="2"/>
+
+        <Button Text="تحديث" 
+                Command="{Binding RefreshCommand}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                BackgroundColor="{StaticResource PrimaryColor}"
+                TextColor="White"
+                CornerRadius="20"
+                HeightRequest="{OnIdiom Phone=40, Default=50}"
+                WidthRequest="{OnIdiom Phone=100, Default=120}"
+                Grid.Column="1">
+            <Button.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="White" />
+            </Button.Behaviors>
+        </Button>
+
+        <Frame Grid.Row="1" Grid.Column="0" 
+               BackgroundColor="{AppThemeBinding Light=White, Dark=#3b3b3b}" 
+               CornerRadius="10" 
+               HasShadow="True">
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="0">
+                <!-- استبدل "food_icon.png" بمسار الرمز الخاص بك -->
+                <Image Source="food_icon.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{StaticResource PrimaryColor}" />
+                    </Image.Behaviors>
+                </Image>
+                <Label Grid.Row="1" Text="الأكلات المتوفرة" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Row="2" Text="{Binding AvailableMeals}" 
+                       FontSize="{OnIdiom Phone=32, Tablet=40, Desktop=40}" 
+                       TextColor="{StaticResource PrimaryColor}" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                    <Label.Behaviors>
+                        <toolkit:AnimationBehavior>
+                            <toolkit:AnimationBehavior.AnimationType>
+                                <toolkit:FadeAnimation />
+                            </toolkit:AnimationBehavior.AnimationType>
+                        </toolkit:AnimationBehavior>
+                    </Label.Behaviors>
+                </Label>
+            </Grid>
+        </Frame>
+
+        <Frame Grid.Row="1" Grid.Column="1" 
+               BackgroundColor="{AppThemeBinding Light=White, Dark=#3b3b3b}" 
+               CornerRadius="10" 
+               HasShadow="True">
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="0">
+                <!-- استبدل "money_icon.png" بمسار الرمز الخاص بك -->
+                <Image Source="money_icon.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{StaticResource SecondaryColor}" />
+                    </Image.Behaviors>
+                </Image>
+                <Label Grid.Row="1" Text="رصيد الصندوق الحالي" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Row="2" Text="{Binding CurrentBalance, StringFormat='{0:C}'}" 
+                       FontSize="{OnIdiom Phone=28, Tablet=36, Desktop=44}" 
+                       TextColor="{StaticResource SecondaryColor}" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                    <Label.Behaviors>
+                        <toolkit:AnimationBehavior>
+                            <toolkit:AnimationBehavior.AnimationType>
+                                <toolkit:FadeAnimation />
+                            </toolkit:AnimationBehavior.AnimationType>
+                        </toolkit:AnimationBehavior>
+                    </Label.Behaviors>
+                </Label>
+            </Grid>
+        </Frame>
+
+        <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+               BackgroundColor="{AppThemeBinding Light=White, Dark=#3b3b3b}" 
+               CornerRadius="10" 
+               HasShadow="True">
+            <Grid RowDefinitions="Auto,Auto,*" RowSpacing="0">
+                <!-- استبدل "ping_icon.png" بمسار الرمز الخاص بك -->
+                <Image Source="ping_icon.png" HeightRequest="50" WidthRequest="50" HorizontalOptions="Center">
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{StaticResource AccentColor}" />
+                    </Image.Behaviors>
+                </Image>
+                <Label Grid.Row="1" Text="Ping (مللي ثانية)" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Grid.Row="2" Text="{Binding PingValue}" 
+                       FontSize="{OnIdiom Phone=40, Tablet=48, Desktop=40}" 
+                       TextColor="{StaticResource AccentColor}" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                    <Label.Behaviors>
+                        <toolkit:AnimationBehavior>
+                            <toolkit:AnimationBehavior.AnimationType>
+                                <toolkit:FadeAnimation />
+                            </toolkit:AnimationBehavior.AnimationType>
+                        </toolkit:AnimationBehavior>
+                    </Label.Behaviors>
+                </Label>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

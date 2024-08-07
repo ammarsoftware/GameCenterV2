@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.ImagePage"
+             Title="ImagePage">
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="0">
+                <Button Text="رجوع" Clicked="OnBackButtonClicked"/>
+                <!--<Button Text="طباعة الصورة" Clicked="OnPrintButtonClicked"/>-->
+                <Button Text="مشاركة الصورة" Clicked="OnShareButtonClicked"/>
+            </StackLayout>
+
+            <ScrollView Grid.Row="1">
+                <Image x:Name="DisplayedImage" Aspect="Center" HorizontalOptions="Center" VerticalOptions="Center" />
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

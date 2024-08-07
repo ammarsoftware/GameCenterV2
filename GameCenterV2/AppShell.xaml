@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GameCenterV2.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GameCenterV2"
+    xmlns:Views="clr-namespace:GameCenterV2.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="GameCenterV2">
+    
+    <FlyoutItem Title="الرئيسية">
+        <ShellContent ContentTemplate="{DataTemplate Views:DashboardPage}" Route="DashboardPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="الطاولات">
+        <ShellContent ContentTemplate="{DataTemplate Views:MapPage}" Route="MapPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="طلبية سريعة">
+        <ShellContent ContentTemplate="{DataTemplate Views:PosPage}" Route="QuickPosPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="اضافة طاولة">
+        <ShellContent ContentTemplate="{DataTemplate Views:AddEditTablePage}" Route="AddEditTablePage" />
+    </FlyoutItem>
+    <FlyoutItem Title="المواد">
+        <ShellContent  ContentTemplate="{DataTemplate Views:ItemListPage}" Route="ItemListPage" />
+    </FlyoutItem>
+    <FlyoutItem Title="الاقسام">
+        <ShellContent  ContentTemplate="{DataTemplate Views:StoreListPage}" Route="StoreListPage" />
+    </FlyoutItem>
+    <MenuItem Text="اغلاق الصندوق"  Clicked="OnCloseBoxClicked" />
+    <FlyoutItem Title="الاعدادات">
+        <ShellContent  ContentTemplate="{DataTemplate Views:SettingsPage}" Route="SettingsPage" />
+    </FlyoutItem>
+    <MenuItem Text="تسجيل الخروج"  Clicked="OnLogoutClicked" />
+
+
+    
+    
+    
+</Shell>

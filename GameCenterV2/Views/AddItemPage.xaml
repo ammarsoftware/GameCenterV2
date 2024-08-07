@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.AddItemPage"
+             xmlns:local="clr-namespace:GameCenterV2.Converters"
+             Title="اضافة وتعديل المواد">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Entry Text="{Binding IName}" Placeholder="اسم المادة" Margin="10"/>
+                <Entry Text="{Binding IQty}" Placeholder="الكمية" Keyboard="Numeric" Margin="10"/>
+                <Entry Text="{Binding IPriceSale}" Placeholder="سعر البيع" Keyboard="Numeric" Margin="10"/>
+                <Entry Text="{Binding IPriceBuy}" Placeholder="سعر الشراء" Keyboard="Numeric" Margin="10"/>
+                <Picker ItemsSource="{Binding Departments}"
+                ItemDisplayBinding="{Binding StoreName}"
+                SelectedItem="{Binding SelectedDepartment}"
+                Title="القسم" Margin="10"/>
+                <!-- Customer Image -->
+                <Button Text="تحميل صورة المادة" Command="{Binding PickItemImageAsyncCommand}" Margin="10"/>
+                <Image Source="{Binding IImg, Converter={StaticResource ByteArrayToImageSourceConverter}}" HeightRequest="200" Margin="10"/>
+                <StackLayout Orientation="Horizontal" Margin="10">
+                    <CheckBox x:Name="EnableTimeCheckBox" IsChecked="{Binding IIstime}"/>
+                    <Label Text="تفعيل الوقت" VerticalOptions="Center" Margin="10,0,0,0"/>
+                </StackLayout>
+                <Entry Text="{Binding IOrder}" Placeholder="الترتيب" Keyboard="Numeric" Margin="10"/>
+
+                <Button Text="حفظ" Command="{Binding SaveAsyncCommand}" Margin="10"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

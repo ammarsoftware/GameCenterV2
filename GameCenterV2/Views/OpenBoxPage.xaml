@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.OpenBoxPage"
+              xmlns:vm="clr-namespace:GameCenterV2.ViewModels"
+             Title="فتح الصندوق">
+    
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry Placeholder="المبلغ" x:Name="ValueEntry" Text="{Binding BoxMonyIn}" IsVisible="{Binding ShowOpen}"/>
+        <Entry Placeholder="المبلغ" Text="{Binding BoxMonyOut}" IsVisible="{Binding ShowClose}"/>
+
+        <Entry Placeholder="ملاحظات" x:Name="DetailsEntry" Text="{Binding BoxDetails}" />
+        <Button Text="غلق الصندوق" Command="{Binding CloseAsyncCommand}" IsVisible="{Binding ShowClose}"/>
+
+        <Button Text="حفظ" Command="{Binding SaveAsyncCommand}" IsVisible="{Binding ShowOpen}"/>
+    </VerticalStackLayout>
+
+</ContentPage>

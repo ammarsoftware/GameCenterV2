@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameCenterV2.Views.AddEditTablePage"
+             xmlns:vm="clr-namespace:GameCenterV2.ViewModels"
+             Title="اضافة وتعديل الطاولات">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10">
+                <Entry Text="{Binding TName}" Placeholder="اسم الطاولة" />
+                <Entry Text="{Binding TNumber}" Placeholder="رقم الطاولة" Keyboard="Telephone" />
+                <Entry Text="{Binding TMap}" Placeholder="رقم الخارطة" Keyboard="Telephone" />
+                
+                <!-- Customer Image -->
+                <Button Text="تحميل صورة الطاولة" Command="{Binding PickTableImageAsyncCommand}" />
+                <Image Source="{Binding TableImageSource}" HeightRequest="200" />
+                
+                <Button Text="حفظ" Command="{Binding SaveAsyncCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
